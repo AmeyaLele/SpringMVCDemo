@@ -58,24 +58,6 @@ public class AppController {
 	@RequestMapping(value="/new" , method=RequestMethod.POST)
 	public String saveEmployee(@Valid @ModelAttribute("employee")Employee employee , BindingResult result , ModelMap map )
 	{	
-		Department department=new Department();
-		
-		 if (result.hasErrors()) {			 
-			 return "registration";
-		 }
-		 
-		 if(!employeeService.isSSNUnique(employee.getEmployeeId(), employee.getSsn()))
-		 {
-			 FieldError ssnError = new FieldError("employee", "SSN", messageSource.getMessage("non.unique.ssn", new String[]{employee.getSsn()}, Locale.getDefault()));
-			 result.addError(ssnError);
-			 return "registration";
-		 }
-	
-		 employeeService.saveEmployee(employee);
-		 
-		 map.addAttribute("success", "Employee "+employee.getEmployeeName()+" registered successfully");
-		 
-		 return "success";
 	}
 	
 	
